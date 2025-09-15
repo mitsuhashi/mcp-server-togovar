@@ -1,15 +1,18 @@
-import sys
+import sys, os
 from fastmcp import FastMCP
-import httpx
+import httpx, yaml
 
 print("Starting MCP server...", file=sys.stderr)
-# Create an HTTP client for your API
+
+SPEC_URL = os.getenv("SPEC_URL", "https://grch38.togovar.org/api/v1.yml")
 client = httpx.AsyncClient(base_url="https://grch38.togovar.org/api")
 
-# Load your OpenAPI spec 
-openapi_spec = httpx.get("https://grch38.togovar.org/api/v1.yml").json()
+# YAML を取得して Python dict に
+resp = httpx.get(SPEC_URL, timeout=30)
+resp.raise_for_status()
+openapi_spec = yaml.safe_load(resp.text)   # ← ここで参照解決はしない
 
-# Create the MCP server
+# そのまま渡す（未解決の $ref を含んでいて OK）
 mcp = FastMCP.from_openapi(
     openapi_spec=openapi_spec,
     client=client,
