@@ -5,7 +5,17 @@ import httpx, yaml
 print("Starting MCP server...", file=sys.stderr)
 
 SPEC_URL = os.getenv("SPEC_URL", "https://grch38.togovar.org/api/v1.yml")
-client = httpx.AsyncClient(base_url="https://grch38.togovar.org/api")
+client = httpx.AsyncClient(
+    base_url="https://grch38.togovar.org/api",
+    timeout=15.0,
+    follow_redirects=True,
+    headers={
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        # 必要ならここに認証ヘッダを追加:
+        # "Authorization": f"Bearer {os.getenv('API_TOKEN')}",
+    },
+)
 
 # YAML を取得して Python dict に
 resp = httpx.get(SPEC_URL, timeout=30)
