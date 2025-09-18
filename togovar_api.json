@@ -13,6 +13,7 @@
   "paths": {
     "/search/variant": {
       "post": {
+        ”operationId”: "searchVariant",
         "tags": [
           "search"
         ],
