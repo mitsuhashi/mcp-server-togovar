@@ -13,7 +13,7 @@
   "paths": {
     "/search/variant": {
       "post": {
-        "operationId": "searchVariant",
+        "operationId": "postSearchVariant",
         "tags": [
           "search"
         ],
@@ -56,6 +56,7 @@
     },
     "/search/gene": {
       "get": {
+        "operationId": "getSearchGene",
         "tags": [
           "search"
         ],
@@ -112,6 +113,7 @@
         }
       },
       "post": {
+        "operationId": "postSearchGene",
         "tags": [
           "search"
         ],
@@ -170,6 +172,7 @@
     },
     "/search/disease": {
       "get": {
+        "operationId": "getSearchDisease",
         "tags": [
           "search"
         ],
@@ -226,6 +229,7 @@
         }
       },
       "post": {
+        "operationId": "postSearchDisease",
         "tags": [
           "search"
         ],
@@ -284,6 +288,7 @@
     },
     "/inspect/disease": {
       "get": {
+        "operationId": "getInspectDisease",
         "tags": [
           "inspect"
         ],
@@ -340,6 +345,7 @@
         }
       },
       "post": {
+        "operationId": "postInspectDisease",
         "tags": [
           "inspect"
         ],
@@ -398,6 +404,7 @@
     },
     "/download/variant": {
       "post": {
+        "operationId": "postDownloadVariant",
         "tags": [
           "download"
         ],
